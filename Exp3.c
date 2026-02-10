@@ -13,8 +13,6 @@ int main() {
         scanf("%d", &bt[i]);
         pid[i] = i + 1;
     }
-
-    // Sort processes by Burst Time (Ascending)
     for (i = 0; i < n - 1; i++) {
         for (j = i + 1; j < n; j++) {
             if (bt[i] > bt[j]) {
@@ -28,24 +26,19 @@ int main() {
             }
         }
     }
-
-    // Waiting time calculation
     wt[0] = 0;
     for (i = 1; i < n; i++) {
         wt[i] = wt[i - 1] + bt[i - 1];
     }
 
-    // Turnaround time calculation
     for (i = 0; i < n; i++) {
         tat[i] = wt[i] + bt[i];
         avg_wt += wt[i];
         avg_tat += tat[i];
     }
-
     avg_wt /= n;
     avg_tat /= n;
 
-    // Output
     printf("\nProcess\tBurst Time\tWaiting Time\tTurnaround Time\n");
     for (i = 0; i < n; i++) {
         printf("P%d\t\t%d\t\t%d\t\t%d\n", pid[i], bt[i], wt[i], tat[i]);
