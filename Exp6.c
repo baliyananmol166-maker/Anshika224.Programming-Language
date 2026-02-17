@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 int main() {
     int n;
@@ -7,8 +8,8 @@ int main() {
     scanf("%d", &n);
 
     int pid[n], at[n], bt[n], priority[n];
-    int wt[n], tat[n], completed[n];
-    int current_time = 0, done = 0;
+    int rt[n], wt[n], tat[n];
+    int completed = 0, current_time = 0;
     int total_wt = 0, total_tat = 0;
 
     // Input
@@ -16,16 +17,17 @@ int main() {
         pid[i] = i + 1;
         printf("\nEnter Arrival Time, Burst Time and Priority for Process %d: ", pid[i]);
         scanf("%d %d %d", &at[i], &bt[i], &priority[i]);
-        completed[i] = 0;
+        rt[i] = bt[i];  // Remaining time
     }
 
     // Scheduling
-    while(done < n) {
-        int highest_priority = 9999;
+    while(completed < n) {
+        int highest_priority = INT_MAX;
         int index = -1;
 
+        // Find process with highest priority at current time
         for(int i = 0; i < n; i++) {
-            if(at[i] <= current_time && completed[i] == 0) {
+            if(at[i] <= current_time && rt[i] > 0) {
                 if(priority[i] < highest_priority) {
                     highest_priority = priority[i];
                     index = i;
@@ -36,18 +38,23 @@ int main() {
         if(index == -1) {
             current_time++;
         } else {
-            wt[index] = current_time - at[index];
-            if(wt[index] < 0)
-                wt[index] = 0;
+            rt[index]--;
+            current_time++;
 
-            current_time += bt[index];
-            tat[index] = wt[index] + bt[index];
+            // If process completes
+            if(rt[index] == 0) {
+                completed++;
+                int finish_time = current_time;
 
-            total_wt += wt[index];
-            total_tat += tat[index];
+                wt[index] = finish_time - bt[index] - at[index];
+                if(wt[index] < 0)
+                    wt[index] = 0;
 
-            completed[index] = 1;
-            done++;
+                tat[index] = bt[index] + wt[index];
+
+                total_wt += wt[index];
+                total_tat += tat[index];
+            }
         }
     }
 
