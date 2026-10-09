@@ -1,0 +1,71 @@
+VECTOR
+1) Declaration / Initialization
+vector<data_type > vector_name; (empty vector)
+vector<data_type> vector_name; (size,default_val);
+
+//empty vector
+vector<int> vec1;
+//vector with 5 element(all 0 by default)
+vector<int> vec2(5);
+//vector with 5 element, all initialized to 10
+vector<int > vec3(5,10);
+
+2) Direct Initialization
+vector<data_type > vector_name = {val1, val2, val3.......};
+
+3) Adding Element
+myArr.push_back(element); -> Add element at end
+
+4) Accessing Element
+data_type element_name = vec_name[index];
+
+5) Updating Element
+data_type element_name = vec_name[index];
+
+6) Swapping of Elements
+swap(val1, val2);
+
+7) Adding Element/vector at index
+myArr.insert(vec1.begin() + index, val);
+
+8) Inserting one vector into another
+vec1.insert(vec1.end(), vec2.begin(), vec2.end());
+
+9) Location of element
+// how to find the index from iterator ?
+int idx = find(vec.begin(), vec.end(), element) - vec.begin();
+//if element is not present in the vector, it will return the size of vector
+
+10)Reverse a vector
+reverse(vec1.begin(), vec1.end()); -> In place
+
+11) Sum | Max | Min of a Vector
+int sum = accumulate(vec1.begin(), vec1.end(), sum_intial);
+int max = *max_element(vec1.begin(), vec1.end());
+int min = *min_element(vec1.begin(), vec1.end());
+
+12) Sort of a vector
+sort(v.begin(), v.end(), less<int>()); // ascending order
+sort(v.begin(), v.end(), greater<int>()); // descending order
+
+13) Slicing of a vector
+vector<int> new_vec;
+new_vec.assign(vec1.begin() + from_idx, vec1.begin() + to_idx);
+    OR
+vector<int> new_vec(vec1.begin()+ from, vec1.begin() + to);
+
+14) Looping through vector
+for(int i=0; i<vec1.size(); i+=1){
+    cout << vec1[i] << endl;
+}
+//another way 
+for(int num : vec1){
+   cout << num << endl;
+}
+
+
+
+                 2D Vector
+1) Declaration
+(i)vector<vector<int>> mat;
+(ii)vector<vector<int>> mat(N, vector<int>(M)); // n is no of rows and m is no colums
