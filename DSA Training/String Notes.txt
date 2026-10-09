@@ -1,0 +1,31 @@
+String | Mutable 
+
+1)Searching
+int index = myStr1.find(myStr2, from_index(optional));
+
+2)Checks if two strings are equal
+bool ans = (myStr1 == myStr2);
+
+3) Insert str/char at index
+myStr.insert(index,str/char);
+
+4)Frequency of char/substring
+int freq = count(myStr.begin(), myStr.end(), char);
+
+5)length
+myStr.length();
+myStr.size();
+
+
+
+String Rotation
+1)Right rotation
+string rr_s = s.substr(n-k, k) + s.substr(0,n-k); 
+// here n=length of string and k = rotation value
+
+2)Left Rotation
+string lr_s = s.substr(k,n-k) + s.substr(0,k);
+
+
+to_string(sum)
+pow(2,3) // output=8
